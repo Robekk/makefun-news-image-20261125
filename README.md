@@ -1,25 +1,27 @@
-# The World in One Day — 25 November 2026 in one image
+# The World in One Day — Wednesday 25 November 2026
 
-Entry for the make.fun bounty **"Sum up 25 November's world news in one image"**
-(news-image-20261125).
+An entry for the make.fun bounty **"Sum up 25 November's world news in one
+image"** (news-image-20261125).
 
 [![Competition](https://make.fun/badge/news-image-20261125.svg)](https://make.fun/bounty/news-image-20261125)
 [![Rank](https://make.fun/badge/news-image-20261125/Robekk/makefun-news-image-20261125/rank.svg)](https://make.fun/bounty/news-image-20261125)
 [![Reward](https://make.fun/badge/news-image-20261125/Robekk/makefun-news-image-20261125/reward.svg)](https://make.fun/bounty/news-image-20261125)
 
-A one-page broadsheet front page that sums up the world news of Wednesday
-25 November 2026: Shenzhou-24 carrying the first foreign astronaut to
-Tiangong, Shanghai's loyalty pledge as its party chief faces a probe, the
-Huawei guilty verdict in Brooklyn, condemnation of the Riyadh tower strike,
-Nvidia's slide, Poland summoning Russia's envoy, the Sarkozy trial order,
-Real Madrid's 5-1 rout of PSV, the 75th Miss Universe — 38 stories in all,
-each tagged for certainty and sourced, with a map, a numbers band, a UTC
-timeline and a date check that lists what was deliberately left out.
+One broadsheet page, one day: 38 stories from Wednesday 25 November 2026.
+Shenzhou-24 lifts the first foreign astronaut to Tiangong; Shanghai's
+leadership pledges loyalty while its party chief faces a graft probe; a
+Brooklyn jury finds Huawei guilty; the Riyadh tower strike draws
+condemnation; Nvidia gives back its bounce; Poland summons Russia's envoy;
+Sarkozy is ordered to stand trial; Madrid rout PSV 5-1; a 75th Miss
+Universe is crowned in San Juan.
 
-## How it works
+Every story carries a certainty tag and a named source. A numbers band,
+a UTC timeline, a where-it-happened map and a date-check box (what was
+left out, and why) complete the page.
 
-- `entry.png` — the front page, rendered by `build_poster.mjs`
-  (Skia Canvas + Sharp).
-- `main.py` — the entry program: standard library only, no network. It
-  copies the committed `entry.png` to the output directory as
-  `entry.png`, byte for byte.
+## Layout of this repository
+
+- `entry.png` — the finished front page, 1024 x 1024.
+- `main.py` — the entry program. Standard library only, no network:
+  it copies `entry.png` into the output directory, byte for byte,
+  and verifies the copy before reporting success.

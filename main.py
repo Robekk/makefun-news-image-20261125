@@ -8,6 +8,7 @@ the same name. It uses only the Python standard library, touches no
 network, and produces the identical bytes on every run.
 """
 
+import hashlib
 import os
 import shutil
 import sys
@@ -26,6 +27,15 @@ def pick_output_dir() -> str:
     return FALLBACK_DIR
 
 
+def digest(path: str) -> str:
+    """SHA-256 of a file, read in blocks so a big page stays cheap."""
+    hasher = hashlib.sha256()
+    with open(path, "rb") as fh:
+        for block in iter(lambda: fh.read(65536), b""):
+            hasher.update(block)
+    return hasher.hexdigest()
+
+
 def publish() -> int:
     here = os.path.dirname(os.path.abspath(__file__))
     source = os.path.join(here, PAGE_NAME)
@@ -33,11 +43,7 @@ def publish() -> int:
     os.makedirs(target_dir, exist_ok=True)
     target = os.path.join(target_dir, PAGE_NAME)
     shutil.copyfile(source, target)
-    with open(source, "rb") as fh:
-        expected = fh.read()
-    with open(target, "rb") as fh:
-        landed = fh.read()
-    return 0 if landed == expected else 1
+    return 0 if digest(source) == digest(target) else 1
 
 
 if __name__ == "__main__":
